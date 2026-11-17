@@ -1,0 +1,628 @@
+/* =====================================================================
+   CampusLibre UNAB · estilos.css
+   Hoja de estilos única para todo el portal (HTML5 + CSS3 nativo).
+
+   Índice
+   1. Variables (colores de la marca UNAB y tipografía)
+   2. Base y accesibilidad
+   3. Barra superior, header y navegación global
+   4. Footer
+   5. Estructura de página y navegación local
+   6. Componentes: botones, formularios, tablas, avisos, etiquetas
+   7. Medidor de Horas Libres (cuadrícula de 96 horas) y ranking
+   8. Páginas: acceso, inicio, lugares, plano, horario, calendario,
+      calculadora, CRUD
+   9. Modo oscuro
+   10. Responsive (tablet y celular), movimiento reducido e impresión
+   ===================================================================== */
+
+/* 1. VARIABLES ======================================================== */
+:root {
+  /* Color vino de la marca UNAB (Manual de Identidad de Marca) */
+  --vino: #971D40;           /* acento principal: botones, enlaces, HL cumplidas */
+  --vino-oscuro: #7A1634;    /* hover de los botones */
+  --vino-claro: #F8E8ED;     /* fondos suaves: menú activo, ranking, HL sugeridas */
+  --vino-texto: #971D40;     /* texto y enlaces: contraste 8:1 sobre blanco */
+  --sobre-vino: #FFFFFF;     /* texto encima del color vino */
+
+  --tinta: #2B2B2A;          /* carbón: títulos, texto, barra superior y footer */
+  --gris: #62625F;
+  --linea: #E2E2DF;
+  --fondo: #FFFFFF;
+  --fondo-suave: #F4F4F2;
+  --verde: #2E7D4F;
+  --verde-claro: #E3F2E8;
+  --rojo: #B3261E;
+  --rojo-claro: #FBE9E7;
+  --ambar: #8A5A00;
+
+  --letra-titulos: "Poppins", "Segoe UI", Arial, sans-serif;
+  --letra-texto: "Open Sans", "Segoe UI", Arial, sans-serif;
+
+  --radio: 10px;
+  --ancho-max: 1120px;
+}
+
+/* 2. BASE ============================================================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }          /* desplazamiento suave */
+
+body {
+  margin: 0;
+  font-family: var(--letra-texto);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--tinta);
+  background: var(--fondo-suave);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 { font-family: var(--letra-titulos); line-height: 1.2; margin: 0 0 .5em; }
+h1 { font-size: 2rem; font-weight: 700; }
+h2 { font-size: 1.4rem; font-weight: 600; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p  { margin: 0 0 1em; max-width: 70ch; }
+
+a { color: var(--vino-texto); }
+a:hover { color: var(--tinta); }
+img { max-width: 100%; display: block; }
+
+:focus-visible { outline: 3px solid var(--vino); outline-offset: 2px; }
+
+.solo-lector {             /* oculto a la vista, visible para lectores de pantalla */
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.saltar {                  /* enlace "Saltar al contenido" para teclado */
+  position: absolute; left: 1rem; top: -3rem; z-index: 100;
+  background: var(--tinta); color: #fff; padding: .5rem 1rem; border-radius: var(--radio);
+}
+.saltar:focus { top: 1rem; }
+
+/* 3. BARRA SUPERIOR Y HEADER ========================================== */
+.barra-superior { background: var(--tinta); color: #EDEDEA; font-size: .9rem; }
+.barra-superior__contenido {
+  max-width: var(--ancho-max); margin: 0 auto; padding: .35rem 1.25rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.barra-superior p { margin: 0; }
+.herramientas { display: flex; align-items: center; gap: .5rem; white-space: nowrap; }
+.barra-superior .herramientas button,
+.barra-superior .herramientas a {
+  background: none; border: 1px solid transparent; color: #EDEDEA;
+  font: 600 .88rem var(--letra-texto); padding: .25rem .55rem; border-radius: 6px;
+  cursor: pointer; text-decoration: none;
+}
+.barra-superior .herramientas button:hover,
+.barra-superior .herramientas a:hover { border-color: var(--vino-claro); color: #fff; }
+.barra-superior .separador { width: 1px; height: 18px; background: #5A5A57; }
+
+.header {
+  background: var(--fondo);
+  border-bottom: 4px solid var(--vino);
+  position: sticky; top: 0; z-index: 50;
+}
+.header__contenido {
+  max-width: var(--ancho-max); margin: 0 auto; padding: .75rem 1.25rem;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.marca { display: flex; align-items: center; gap: .75rem; text-decoration: none; color: var(--tinta); flex-shrink: 0; }
+.marca img { height: 44px; width: auto; }
+.marca__nombre {
+  font-family: var(--letra-titulos); font-weight: 600; font-size: 1rem;
+  padding-left: .75rem; border-left: 2px solid var(--linea);
+}
+.nav-global { flex: 1; }
+.nav-global ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem; }
+.nav-global a {
+  display: block; padding: .5rem .6rem; border-radius: var(--radio);
+  text-decoration: none; color: var(--tinta); font: 600 .95rem var(--letra-titulos);
+}
+.nav-global a:hover { background: var(--fondo-suave); }
+.nav-global a[aria-current="page"] { background: var(--vino-claro); color: var(--vino-texto); }
+.menu-boton {
+  display: none; background: none; border: 1px solid var(--linea); color: var(--tinta);
+  border-radius: var(--radio); height: 40px; padding: 0 .8rem;
+  font: 600 .9rem var(--letra-titulos); cursor: pointer;
+}
+
+/* Logo: versión a color en modo claro y blanca en modo oscuro */
+.logo-oscuro { display: none !important; }
+
+/* 4. FOOTER =========================================================== */
+.footer { margin-top: auto; background: var(--tinta); color: #EDEDEA; position: relative; }
+.footer::before {          /* franjas de color, como en la papelería de la UNAB */
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 14px;
+  background: repeating-linear-gradient(to bottom, var(--vino) 0 22px, transparent 22px 34px);
+}
+.footer__contenido {
+  max-width: var(--ancho-max); margin: 0 auto; padding: 2.5rem 1.25rem 1.5rem 2.5rem;
+  display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2rem;
+}
+.footer__marca { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
+.footer__marca img { height: 40px; width: auto; }
+.footer__marca strong { font-family: var(--letra-titulos); font-size: 1.05rem; color: #fff; }
+.footer h2 { font-size: 1rem; color: #fff; }
+.footer p, .footer li { font-size: .95rem; }
+.footer ul { list-style: none; padding: 0; margin: 0; }
+.footer li { margin-bottom: .35rem; }
+.footer a { color: #fff; }
+.footer a:hover { color: var(--vino-claro); }
+.footer__legal {
+  border-top: 1px solid #4A4A48; max-width: var(--ancho-max); margin: 0 auto;
+  padding: 1rem 1.25rem 1.5rem 2.5rem; font-size: .85rem; color: #BDBDB8;
+}
+.footer__legal p { max-width: none; margin: 0; }
+
+/* 5. ESTRUCTURA DE PÁGINA ============================================= */
+.principal { width: 100%; max-width: var(--ancho-max); margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+.encabezado-pagina { margin-bottom: 1.75rem; }
+.encabezado-pagina p { color: var(--gris); font-size: 1.1rem; }
+
+.bloque {
+  background: var(--fondo); border: 1px solid var(--linea); border-radius: var(--radio);
+  padding: 1.5rem; margin-bottom: 1.5rem;
+  scroll-margin-top: 110px;   /* el header fijo no tapa el título al saltar */
+}
+.bloque > h2 { margin-bottom: 1rem; }
+.bloque__cabecera { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.bloque__cabecera h2 { margin: 0; }
+
+.columnas { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: start; }
+.con-nav-local { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: start; }
+.con-nav-local > *, .columnas > * { min-width: 0; }   /* las tablas anchas no estiran la cuadrícula */
+
+.nav-local { position: sticky; top: 100px; }
+.nav-local h2 { font-size: .95rem; color: var(--gris); margin-bottom: .5rem; }
+.nav-local ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--linea); }
+.nav-local a {
+  display: block; padding: .4rem .9rem; margin-left: -2px;
+  border-left: 2px solid transparent; text-decoration: none; color: var(--tinta);
+}
+.nav-local a:hover { border-left-color: var(--vino); }
+.nav-local a.activo { border-left-color: var(--vino); color: var(--vino-texto); font-weight: 700; }
+
+/* 6. COMPONENTES ====================================================== */
+.boton {
+  display: inline-block; font: 600 1rem var(--letra-titulos);
+  padding: .7rem 1.3rem; border-radius: var(--radio);
+  border: 2px solid var(--vino); background: var(--vino); color: var(--sobre-vino);
+  text-decoration: none; cursor: pointer;
+}
+.boton:hover { background: var(--vino-oscuro); border-color: var(--vino-oscuro); color: var(--sobre-vino); }
+.boton--secundario { background: transparent; color: var(--vino-texto); }
+.boton--secundario:hover { background: var(--vino-claro); color: var(--vino-texto); }
+.boton--peligro { background: transparent; border-color: var(--rojo); color: var(--rojo); }
+.boton--peligro:hover { background: var(--rojo-claro); border-color: var(--rojo); color: var(--rojo); }
+.boton--exito { background: transparent; border-color: var(--verde); color: var(--verde); }
+.boton--exito:hover { background: var(--verde-claro); border-color: var(--verde); color: var(--verde); }
+.boton--pequeno { padding: .4rem .8rem; font-size: .9rem; }
+.boton--ancho { width: 100%; }
+.boton:disabled { opacity: .5; cursor: not-allowed; }
+.grupo-botones { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+/* Botón con apariencia de enlace (acciones que no cambian de página) */
+.enlace { background: none; border: none; padding: 0; cursor: pointer; font: inherit; color: var(--vino-texto); text-decoration: underline; }
+.enlace:hover { color: var(--tinta); }
+
+/* Formularios */
+.campo { margin-bottom: 1.1rem; }
+.campo label { display: block; font-weight: 600; margin-bottom: .35rem; }
+.campo input, .campo select, .campo textarea {
+  width: 100%; font: inherit; padding: .65rem .8rem;
+  border: 1px solid #BDBDB8; border-radius: var(--radio);
+  background: var(--fondo); color: var(--tinta);
+}
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--vino); outline: 2px solid var(--vino); outline-offset: 0; }
+.campo .ayuda, .ayuda { font-size: .9rem; color: var(--gris); margin: .3rem 0 0; }
+.campo .error { font-size: .9rem; color: var(--rojo); margin: .3rem 0 0; font-weight: 600; }
+.campo.invalido input, .campo.invalido select, .campo.invalido textarea { border-color: var(--rojo); }
+.campo--check { display: flex; gap: .6rem; align-items: flex-start; flex-wrap: wrap; }
+.campo--check input { width: auto; margin-top: .3rem; }
+.campo--check label { font-weight: 400; flex: 1; }
+.campo--check .error { flex-basis: 100%; }
+.fila-campos { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+.fila-campos--3 { grid-template-columns: repeat(3, 1fr); }
+.fila-campos--4 { grid-template-columns: repeat(4, 1fr); }
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+
+.clave-contenedor { position: relative; }
+.clave-contenedor input { padding-right: 5.5rem; }
+.ver-clave {
+  position: absolute; right: .4rem; top: 50%; transform: translateY(-50%);
+  background: none; border: none; font: 600 .9rem var(--letra-texto);
+  color: var(--vino-texto); cursor: pointer; padding: .3rem .5rem;
+}
+
+/* Avisos */
+.aviso { padding: .85rem 1rem; border-radius: var(--radio); border-left: 5px solid var(--vino); background: var(--vino-claro); margin-bottom: 1rem; }
+.aviso p { margin: 0; }
+.aviso p + p { margin-top: .35rem; }
+.aviso--exito { border-color: var(--verde); background: var(--verde-claro); }
+.aviso--error { border-color: var(--rojo); background: var(--rojo-claro); }
+.aviso[hidden] { display: none; }
+
+/* Etiquetas de categoría y estado */
+.etiqueta {
+  display: inline-block; font-size: .8rem; font-weight: 700; padding: .15rem .55rem;
+  border-radius: 999px; background: var(--fondo-suave); border: 1px solid var(--linea);
+}
+.etiqueta--deporte { background: #E5EEF9; border-color: #C3D6EF; color: #1F4E8C; }
+.etiqueta--cultura { background: #F6E8F4; border-color: #E6C8E2; color: #7A2A70; }
+.etiqueta--salud   { background: var(--verde-claro); border-color: #BFE0CB; color: var(--verde); }
+.etiqueta--social  { background: #FDF0DC; border-color: #F2D3A3; color: #7A4A00; }
+.etiqueta--propia  { background: var(--vino-claro); border-color: #EBC3CF; color: var(--vino-texto); }
+.etiqueta--pendiente { background: #FDF0DC; border-color: #F2D3A3; color: #7A4A00; }
+.etiqueta--validada { background: var(--verde-claro); border-color: #BFE0CB; color: var(--verde); }
+
+/* Tablas */
+.tabla-contenedor { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .98rem; }
+th, td { text-align: left; padding: .65rem .75rem; border-bottom: 1px solid var(--linea); vertical-align: middle; }
+th { font-family: var(--letra-titulos); font-size: .9rem; background: var(--fondo-suave); }
+td.numero, th.numero { text-align: right; }
+th button { font: inherit; background: none; border: none; cursor: pointer; padding: 0; color: inherit; }
+th button::after { content: " ↕"; color: var(--gris); }
+th button[data-orden="asc"]::after { content: " ↑"; color: var(--vino-texto); }
+th button[data-orden="desc"]::after { content: " ↓"; color: var(--vino-texto); }
+tr.fila-pendiente td { background: #FFFBF3; }
+
+.datos { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.5rem; margin: 0; }
+.datos dt { font-weight: 600; color: var(--gris); }
+.datos dd { margin: 0; }
+
+/* Acordeón (preguntas frecuentes) */
+details { border-bottom: 1px solid var(--linea); padding: .9rem 0; }
+summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-size: 1.3rem; line-height: 1; color: var(--vino-texto); }
+details[open] summary::after { content: "–"; }
+details p { margin: .75rem 0 0; }
+
+/* Mensaje flotante (toast) */
+.toast {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translate(-50%, 150%);
+  background: var(--tinta); color: var(--fondo); padding: .85rem 1.25rem; border-radius: var(--radio);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .25); transition: transform .3s ease; z-index: 200; max-width: calc(100% - 2rem);
+}
+.toast.visible { transform: translate(-50%, 0); }
+
+/* Íconos SVG en línea: toman el color del texto */
+.icono { width: 28px; height: 28px; color: var(--vino-texto); flex-shrink: 0; }
+
+/* Video institucional */
+.video { position: relative; aspect-ratio: 16 / 9; max-width: 760px; border-radius: var(--radio); overflow: hidden; background: #000; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* Galería de fotos del campus */
+.galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.galeria figure { margin: 0; }
+.galeria img { width: 100%; height: 220px; object-fit: cover; border-radius: var(--radio); }
+.galeria figcaption { font-size: .9rem; color: var(--gris); margin-top: .35rem; }
+
+/* 7. MEDIDOR DE HORAS LIBRES Y RANKING ================================ */
+/* Cada cuadro es 1 hora libre de las 96 que pide la UNAB */
+.medidor__cifras { display: flex; flex-wrap: wrap; gap: 2.5rem; margin-bottom: 1.25rem; }
+.cifra strong { display: block; font: 700 2.6rem/1 var(--letra-titulos); }
+.cifra span { color: var(--gris); }
+.cifra--faltan strong { color: var(--vino-texto); }
+.cuadricula-hl { display: grid; grid-template-columns: repeat(24, 1fr); gap: 4px; max-width: 720px; }
+.cuadricula-hl span { aspect-ratio: 1; border-radius: 3px; background: var(--fondo-suave); border: 1px solid var(--linea); }
+.cuadricula-hl span.llena { background: var(--vino); border-color: var(--vino); }
+.cuadricula-hl span.pendiente { background: var(--vino-claro); border: 1px dashed var(--vino); }
+.medidor__leyenda { font-size: .9rem; color: var(--gris); margin-top: .75rem; }
+
+.barras { list-style: none; padding: 0; margin: 0; }
+.barras li { margin-bottom: .8rem; }
+.barra-titulo { display: flex; justify-content: space-between; font-size: .95rem; margin-bottom: .25rem; }
+.barra { height: 10px; background: var(--fondo-suave); border-radius: 999px; overflow: hidden; }
+.barra span { display: block; height: 100%; background: var(--vino); border-radius: 999px; }
+
+.ranking { list-style: none; padding: 0; margin: 0; }
+.ranking li {
+  display: grid; grid-template-columns: 40px 1fr auto; gap: .75rem; align-items: center;
+  padding: .6rem .5rem; border-bottom: 1px solid var(--linea);
+}
+.ranking li:last-child { border-bottom: none; }
+.ranking small { color: var(--gris); font-size: .88rem; }
+.ranking__puesto {
+  width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  font: 700 1rem var(--letra-titulos); background: var(--fondo-suave); border: 1px solid var(--linea);
+}
+.ranking li:first-child .ranking__puesto { background: var(--vino); color: var(--sobre-vino); border-color: var(--vino); }
+.ranking__horas { font: 700 1.05rem var(--letra-titulos); }
+.ranking__yo { background: var(--vino-claro); border-radius: var(--radio); }
+.ranking__separador { display: block !important; text-align: center; color: var(--gris); padding: .2rem !important; }
+
+/* 8. PÁGINAS ========================================================== */
+
+/* -- Inicio de sesión y registro --
+   Diseño base del equipo (MiPortalU: Pagina_Inicial.html + style.css):
+   header con logo y lema UNAB, insignia MiPortalU, foto de la Plazoleta
+   Banú con degradado vino y tarjeta de bienvenida. */
+.header-acceso {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding: .9rem clamp(1.25rem, 3vw, 2.5rem);
+  background: var(--fondo); border-bottom: 1px solid var(--linea);
+}
+.header-acceso__marca { display: flex; align-items: center; gap: .9rem; min-width: 0; }
+.header-acceso__logo { height: 60px; width: auto; }
+.header-acceso__titulos { display: flex; flex-direction: column; }
+.header-acceso__nombre { font: 700 1rem var(--letra-titulos); color: var(--vino-texto); }
+.header-acceso__lema { font-size: .8rem; color: var(--gris); }
+.insignia-portal {
+  display: inline-flex; align-items: center; gap: .5rem; flex-shrink: 0;
+  color: var(--vino-texto); font-weight: 600; font-size: .9rem;
+  border: 1px dashed var(--vino-texto); padding: .35rem .75rem; border-radius: 6px; white-space: nowrap;
+}
+.insignia-portal img { height: 18px; width: auto; }
+
+.acceso-mp { flex: 1; display: flex; min-height: 80vh; background: var(--fondo-suave); }
+.hero-acceso {
+  flex: 1; position: relative; margin: 1.25rem; border-radius: 0 12px 12px 0; overflow: hidden; min-height: 420px;
+  background: var(--vino) url("../img/plazoleta-banu.jpg") center / cover no-repeat;
+}
+.hero-acceso__capa {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between;
+  padding: 2.5rem; color: #fff;
+  background: linear-gradient(rgba(0, 0, 0, .2), rgba(151, 29, 64, .82));
+}
+.hero-acceso__insignia {
+  align-self: flex-start; background: rgba(255, 255, 255, .2); backdrop-filter: blur(5px);
+  padding: .5rem 1rem; border-radius: 20px; font-size: .85rem; font-weight: 600;
+}
+.hero-acceso h2 { font-size: clamp(1.9rem, 3.2vw, 2.4rem); color: #fff; margin-bottom: .75rem; max-width: 16ch; }
+.hero-acceso p { color: #fff; opacity: .95; max-width: 46ch; margin-bottom: .5rem; }
+.hero-acceso a { color: #fff; font-weight: 700; }
+.hero-acceso__pie { font-weight: 700; margin-top: 1.5rem !important; }
+.hero-acceso__credito {
+  position: absolute; right: 1rem; top: 1rem; margin: 0; font-size: .75rem; color: #fff; opacity: .85;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+}
+.login-mp { flex: 1; display: flex; justify-content: center; align-items: center; padding: 2.5rem; }
+.login-mp__tarjeta { width: 100%; max-width: 420px; }
+.login-mp__subtitulo { font-size: .75rem; color: var(--vino-texto); font-weight: 700; letter-spacing: 1px; }
+.login-mp__tarjeta h1 { font-size: 1.85rem; margin: .5rem 0; }
+.login-mp__instruccion { color: var(--gris); margin-bottom: 1.75rem; }
+.login-mp__olvido { text-align: right; margin: -.5rem 0 1.1rem; font-size: .9rem; }
+.login-mp__soporte { margin-top: 1.5rem; border-top: 1px solid var(--linea); padding-top: 1.1rem; font-size: .9rem; color: var(--gris); }
+.login-mp__soporte p { margin: 0; }
+.acceso__pie { margin-top: 1.5rem; text-align: center; }
+.cuenta-prueba { margin-top: 1.5rem; font-size: .95rem; background: var(--fondo); border: 1px solid var(--linea); padding: .9rem 1rem; border-radius: var(--radio); }
+.cuenta-prueba p { margin: 0; }
+
+/* -- Inicio (panel principal) -- */
+.saludo h1 { font-size: 2.2rem; }
+.accesos { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+.accesos a {
+  display: flex; gap: .85rem; align-items: flex-start; height: 100%;
+  padding: 1rem 1.1rem; border: 1px solid var(--linea); border-radius: var(--radio);
+  text-decoration: none; color: var(--tinta);
+}
+.accesos a:hover { border-color: var(--vino); background: var(--vino-claro); }
+.accesos strong { display: block; font-family: var(--letra-titulos); margin-bottom: .2rem; }
+.accesos strong + span { display: block; font-size: .92rem; color: var(--gris); }
+.foto-portada { width: 100%; height: 260px; object-fit: cover; border-radius: var(--radio); margin-bottom: .75rem; }
+
+.lista-eventos { list-style: none; padding: 0; margin: 0; }
+.lista-eventos li { display: grid; grid-template-columns: 56px 1fr; gap: .85rem; padding: .75rem 0; border-bottom: 1px solid var(--linea); }
+.lista-eventos li:last-child { border-bottom: none; }
+.fecha-mini {
+  text-align: center; border: 2px solid var(--vino); border-radius: var(--radio);
+  padding: .25rem 0; font-family: var(--letra-titulos); line-height: 1.1; align-self: start;
+}
+.fecha-mini b { display: block; font-size: 1.3rem; }
+.fecha-mini small { font-size: .75rem; }
+.lista-eventos p { margin: .15rem 0 0; font-size: .95rem; color: var(--gris); }
+
+/* -- Lugares -- */
+.filtros { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; align-items: end; }
+.filtros .campo { margin-bottom: 0; }
+.lugares { display: grid; gap: 1rem; }
+.lugar {
+  border: 1px solid var(--linea); border-radius: var(--radio); padding: 1.25rem; background: var(--fondo);
+  display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 1rem;
+}
+.lugar--con-foto { grid-template-columns: 200px minmax(0, 1fr) 210px; }   /* solo si el lugar tiene foto */
+.lugar__foto { width: 200px; height: 150px; object-fit: cover; border-radius: var(--radio); }
+.lugar h3 { margin: .5rem 0 .25rem; }
+.lugar__zona { color: var(--gris); font-size: .95rem; margin-bottom: .5rem; }
+.lugar__atencion { font-size: .95rem; margin-bottom: .25rem; }
+.lugar__sesiones-titulo { font-size: .95rem; font-weight: 600; margin: .5rem 0 0; }
+.lugar ul { padding-left: 1.1rem; margin: .35rem 0 0; font-size: .95rem; }
+.lugar__acciones { display: flex; flex-direction: column; gap: .5rem; align-items: stretch; min-width: 0; }
+.lugar__acciones select { font: inherit; padding: .45rem; border-radius: var(--radio); border: 1px solid #BDBDB8; width: 100%; background: var(--fondo); color: var(--tinta); }
+.cupos { font-size: .92rem; margin: 0; }
+.cupos--lleno { color: var(--rojo); font-weight: 700; }
+.sin-resultados { color: var(--gris); padding: 1rem 0; }
+.mapa iframe { width: 100%; height: 360px; border: 0; border-radius: var(--radio); }
+.pasos { padding-left: 1.25rem; }
+.pasos li { margin-bottom: .5rem; }
+.vacio { text-align: center; padding: 2.5rem 1rem; }
+.vacio p { margin: 0 auto 1rem; color: var(--gris); }
+
+/* -- Mapa interactivo: plano esquemático por sedes -- */
+.plano { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1.25rem; margin-bottom: 1rem; }
+.plano__mapa {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1rem; border-radius: var(--radio); align-items: start;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 6px), var(--linea) calc(50% - 6px), var(--linea) calc(50% + 6px), transparent calc(50% + 6px)),
+    var(--fondo-suave);
+}
+.plano__zona {
+  background: var(--fondo); border: 2px solid var(--vino-claro); border-radius: var(--radio);
+  padding: .85rem; display: flex; flex-direction: column; gap: .5rem;
+}
+.plano__zona-nombre { font: 600 .95rem var(--letra-titulos); margin: 0 0 .25rem; }
+.plano__zona-nombre small { display: block; font: 400 .8rem var(--letra-texto); color: var(--gris); }
+.plano__marcador {
+  display: flex; align-items: center; gap: .5rem; text-align: left; cursor: pointer;
+  font: 600 .92rem var(--letra-texto); color: var(--tinta); background: var(--fondo);
+  border: 1px solid var(--linea); border-radius: 999px; padding: .3rem .75rem .3rem .3rem;
+}
+.plano__marcador:hover { border-color: var(--vino); }
+.plano__marcador[aria-pressed="true"] { background: var(--vino); border-color: var(--vino); color: var(--sobre-vino); }
+.plano__pin {
+  width: 26px; height: 26px; flex-shrink: 0; display: grid; place-items: center;
+  border-radius: 50% 50% 50% 0; background: var(--vino); color: var(--sobre-vino); font: 700 .8rem var(--letra-titulos);
+}
+.plano__marcador[aria-pressed="true"] .plano__pin { background: var(--sobre-vino); color: var(--vino); }
+.plano__info { border: 1px solid var(--linea); border-radius: var(--radio); padding: 1rem; background: var(--fondo); }
+.plano__info ul { padding-left: 1.1rem; margin: .35rem 0 1rem; font-size: .95rem; }
+.plano__foto { width: 100%; height: 150px; object-fit: cover; border-radius: var(--radio); margin-bottom: .75rem; }
+
+/* -- CRUD: formularios para crear/editar registros -- */
+.panel-crud { border: 2px dashed var(--vino-claro); border-radius: var(--radio); padding: 1.25rem; margin-top: 1rem; }
+.panel-crud[hidden] { display: none; }
+.panel-crud h3 { margin-top: 0; }
+
+/* -- Horario -- */
+.horario td, .horario th { text-align: center; font-size: .9rem; padding: .45rem; }
+.horario th:first-child, .horario td:first-child { text-align: right; color: var(--gris); width: 70px; }
+.horario .clase { background: var(--tinta); color: #fff; font-weight: 600; }
+.horario .sugerida { background: var(--vino-claro); color: var(--vino-texto); font-weight: 600; }
+.leyenda { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: .9rem; margin-top: .75rem; }
+.leyenda span::before { content: ""; display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: .4rem; }
+.leyenda .l-clase::before { background: var(--tinta); }
+.leyenda .l-sugerida::before { background: var(--vino-claro); border: 1px solid var(--vino); }
+
+/* -- Notas y pestañas de semestre -- */
+.pestanas { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+.pestanas button {
+  font: 600 .95rem var(--letra-titulos); padding: .5rem 1rem; border: 2px solid var(--linea);
+  border-radius: 999px; background: var(--fondo); color: var(--tinta); cursor: pointer;
+}
+.pestanas button[aria-selected="true"] { background: var(--vino); border-color: var(--vino); color: var(--sobre-vino); }
+.resumen-notas { display: flex; flex-wrap: wrap; gap: 2.5rem; margin-top: 1.25rem; }
+.nota-baja { color: var(--rojo); font-weight: 700; }
+.nota-ok { color: var(--verde); font-weight: 700; }
+.nota-alerta { color: var(--ambar); font-weight: 700; }
+
+/* -- Calculadora ponderada -- */
+.evaluaciones { border: 1px solid var(--linea); border-radius: var(--radio); padding: 1rem; margin: 0 0 1.25rem; }
+.evaluaciones legend { font-weight: 600; padding: 0 .35rem; }
+.evaluaciones__cabecera,
+.evaluacion { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto; gap: .75rem; align-items: start; }
+.evaluaciones__cabecera { font-size: .85rem; font-weight: 600; color: var(--gris); margin-bottom: .35rem; }
+.evaluacion .campo { margin-bottom: .75rem; }
+.evaluacion .boton { margin-top: .3rem; }
+.evaluaciones__pie { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.total-porcentaje { margin: 0; font-weight: 700; color: var(--verde); }
+.total-porcentaje--error { color: var(--rojo); }
+
+/* -- Calendario -- */
+.calendario__barra { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.calendario__barra h2 { margin: 0; text-transform: capitalize; }
+.calendario { display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1px solid var(--linea); border-left: 1px solid var(--linea); }
+.calendario > div { min-height: 96px; border-right: 1px solid var(--linea); border-bottom: 1px solid var(--linea); padding: .35rem; font-size: .85rem; }
+.calendario .dia-semana { min-height: auto; font-weight: 700; text-align: center; background: var(--fondo-suave); font-family: var(--letra-titulos); }
+.calendario .fuera { background: var(--fondo-suave); }
+.calendario .num { font-weight: 700; display: inline-block; margin-bottom: .25rem; }
+.calendario .hoy .num { background: var(--vino); color: var(--sobre-vino); border-radius: 999px; padding: 0 .4rem; }
+.calendario .evento { display: block; border-radius: 4px; padding: .15rem .3rem; margin-bottom: .2rem; line-height: 1.25; font-weight: 600; }
+.filtro-categorias { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+.filtro-categorias legend { font-weight: 600; margin-bottom: .5rem; padding: 0; }
+.filtro-categorias label { border: 1px solid var(--linea); border-radius: 999px; padding: .3rem .8rem; cursor: pointer; font-size: .95rem; }
+.filtro-categorias input { margin-right: .3rem; }
+
+/* 9. MODO OSCURO ====================================================== */
+html[data-tema="oscuro"] {
+  --tinta: #EDEDEA;
+  --gris: #B0B0AB;
+  --linea: #3E3E3B;
+  --fondo: #232322;
+  --fondo-suave: #181817;
+  --vino: #E27A98;
+  --vino-oscuro: #F09AB3;
+  --vino-claro: #3A1A24;
+  --vino-texto: #F4A9BE;
+  --sobre-vino: #1A1A19;
+  --verde-claro: #1C3325;
+  --verde: #7FD19E;
+  --rojo-claro: #3A1D1B;
+  --rojo: #FF8A80;
+  --ambar: #F2C46D;
+}
+html[data-tema="oscuro"] .barra-superior,
+html[data-tema="oscuro"] .footer { background: #111110; }
+html[data-tema="oscuro"] .horario .clase { background: #EDEDEA; color: #1A1A19; }
+html[data-tema="oscuro"] .etiqueta--deporte { background: #1B2A3D; border-color: #2F4A6B; color: #A9C8F0; }
+html[data-tema="oscuro"] .etiqueta--cultura { background: #36203A; border-color: #5A3660; color: #E8B6E2; }
+html[data-tema="oscuro"] .etiqueta--social,
+html[data-tema="oscuro"] .etiqueta--pendiente { background: #3A2C14; border-color: #5C4520; color: #F2C46D; }
+html[data-tema="oscuro"] tr.fila-pendiente td { background: #2A2416; }
+html[data-tema="oscuro"] .logo-claro { display: none !important; }
+html[data-tema="oscuro"] .logo-oscuro { display: block !important; }
+
+/* 10. RESPONSIVE ====================================================== */
+@media (max-width: 960px) {
+  .menu-boton { display: inline-block; }
+  .header__contenido { flex-wrap: wrap; }
+  .marca { margin-right: auto; }
+  .nav-global { display: none; flex-basis: 100%; order: 3; }
+  .nav-global.abierto { display: block; }
+  .nav-global ul { flex-direction: column; }
+  .columnas, .con-nav-local, .plano { grid-template-columns: 1fr; }
+  .nav-local { position: static; }
+  .footer__contenido { grid-template-columns: 1fr 1fr; }
+  .accesos { grid-template-columns: repeat(2, 1fr); }
+  .fila-campos--4 { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 720px) {
+  h1 { font-size: 1.6rem; }
+  .saludo h1 { font-size: 1.7rem; }
+  .marca__nombre { display: none; }
+  .marca img { height: 38px; }
+  .barra-superior__contenido > p { display: none; }
+  .barra-superior__contenido { justify-content: center; }
+  .barra-superior .herramientas { gap: .15rem; }
+  .barra-superior .herramientas button,
+  .barra-superior .herramientas a { font-size: .8rem; padding: .25rem .4rem; }
+  .solo-escritorio { display: none; }
+
+  .acceso-mp { flex-direction: column; }
+  .hero-acceso { margin: 1rem; border-radius: 12px; min-height: 0; }
+  .hero-acceso__capa { position: relative; gap: 1.25rem; padding: 1.5rem 1.5rem 2.4rem; }
+  .hero-acceso__credito { top: auto; bottom: .6rem; }
+  .login-mp { padding: 1.5rem 1.25rem 2.5rem; }
+  .header-acceso__lema { display: none; }
+  .header-acceso__logo { height: 48px; }
+  .header-acceso__nombre { font-size: .9rem; }
+  .insignia-portal { padding: .3rem .5rem; font-size: .8rem; }
+
+  .fila-campos, .fila-campos--3, .fila-campos--4, .filtros, .galeria { grid-template-columns: 1fr; }
+  .lugar, .lugar--con-foto { grid-template-columns: 1fr; }
+  .lugar__foto { width: 100%; height: 180px; }
+  .footer__contenido { grid-template-columns: 1fr; }
+  .accesos { grid-template-columns: 1fr; }
+  .cuadricula-hl { grid-template-columns: repeat(12, 1fr); }
+  .calendario > div { min-height: 64px; font-size: .75rem; padding: .2rem; }
+  .calendario .evento { font-size: 0; height: 8px; padding: 0; background: var(--vino); border-radius: 999px; }
+  .calendario__barra h2 { order: -1; flex-basis: 100%; text-align: center; }
+  .calendario__barra .boton { flex: 1; }
+  .medidor__cifras { gap: 1.5rem; }
+  .cifra strong { font-size: 2rem; }
+  .bloque { padding: 1.1rem; }
+  .plano__mapa { grid-template-columns: 1fr; background: var(--fondo-suave); }
+  .evaluaciones__cabecera { display: none; }
+  .evaluacion { grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--linea); padding-bottom: .5rem; margin-bottom: .75rem; }
+  .evaluacion .campo:first-child { grid-column: 1 / -1; }
+  .evaluacion .solo-lector { position: static; width: auto; height: auto; clip: auto; font-size: .85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .toast { transition: none; }
+}
+
+@media print {
+  .barra-superior, .header, .footer, .nav-local, .no-imprimir { display: none !important; }
+  body { background: #fff; }
+  .bloque { border: none; }
+}
