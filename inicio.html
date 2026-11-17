@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel principal del estudiante en CampusLibre UNAB.">
+  <title>Inicio · CampusLibre UNAB</title>
+  <link rel="icon" href="img/logo-unab-vertical.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="inicio">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra superior: accesibilidad y cuenta -->
+  <div class="barra-superior">
+    <div class="barra-superior__contenido">
+      <p>Universidad Autónoma de Bucaramanga · Bienestar Universitario</p>
+      <div class="herramientas" role="group" aria-label="Accesibilidad y cuenta">
+        <button type="button" id="letra-menos" aria-label="Reducir tamaño de letra">A−</button>
+        <button type="button" id="letra-mas" aria-label="Aumentar tamaño de letra">A+</button>
+        <button type="button" id="boton-tema" aria-pressed="false">Modo oscuro</button>
+        <span class="separador" aria-hidden="true"></span>
+        <a href="perfil.html"><span class="solo-escritorio">Hola, </span><span data-nombre-usuario>estudiante</span></a>
+        <button type="button" id="boton-salir">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+  <!-- Header con la navegación global -->
+  <header class="header">
+    <div class="header__contenido">
+      <a class="marca" href="inicio.html">
+        <img class="logo-claro" src="img/logo-unab-vertical.png" alt="UNAB" width="28" height="44">
+        <img class="logo-oscuro" src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="28" height="44">
+        <span class="marca__nombre">CampusLibre</span>
+      </a>
+      <button class="menu-boton" type="button" aria-expanded="false" aria-controls="nav-global">Menú</button>
+      <nav class="nav-global" id="nav-global" aria-label="Navegación principal">
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares</a></li>
+          <li><a href="mis-lugares.html">Mis lugares</a></li>
+          <li><a href="eventos.html">Eventos</a></li>
+          <li><a href="academico.html">Académico</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="ayuda.html">Ayuda</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="principal" id="contenido">
+
+    <section class="encabezado-pagina saludo">
+      <h1>Hola, <span data-nombre-usuario>estudiante</span></h1>
+      <p>Este es el resumen de tus horas libres y tus accesos rápidos.</p>
+    </section>
+
+    <div id="alertas" aria-live="polite"></div>
+
+    <div class="columnas">
+      <div>
+        <section class="bloque" aria-labelledby="t-avance">
+          <h2 id="t-avance">Tu avance de horas libres</h2>
+          <div class="medidor__cifras">
+            <div class="cifra"><strong id="hl-cumplidas">0</strong><span>horas cumplidas</span></div>
+            <div class="cifra cifra--faltan"><strong id="hl-faltan">96</strong><span>horas te faltan</span></div>
+          </div>
+          <div class="cuadricula-hl" id="cuadricula-inicio"></div>
+          <p class="medidor__leyenda">Cada cuadro es una de las 96 horas libres que necesitas para graduarte. Los punteados están pendientes de validación.</p>
+          <a class="boton boton--secundario" href="horas-libres.html">Ver mi historial</a>
+        </section>
+
+        <section class="bloque" aria-labelledby="t-accesos">
+          <h2 id="t-accesos">Accesos rápidos</h2>
+          <ul class="accesos">
+            <li><a href="lugares.html"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><strong>¿Dónde obtengo HL?</strong><span>Lugares del campus e inscripción</span></span></a></li>
+            <li><a href="mis-lugares.html"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></svg><span><strong>Mis lugares</strong><span>Lugares donde estoy inscrito</span></span></a></li>
+            <li><a href="eventos.html"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span><strong>Eventos</strong><span>Calendario de Bienestar</span></span></a></li>
+            <li><a href="academico.html#notas"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg><span><strong>Notas</strong><span>Calificaciones de dos semestres</span></span></a></li>
+            <li><a href="academico.html#cursos"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg><span><strong>Cursos</strong><span>Materias inscritas</span></span></a></li>
+            <li><a href="academico.html#horario"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9h17M9 9v11M15 9v11"/></svg><span><strong>Horario</strong><span>Clases y horas sin clase</span></span></a></li>
+            <li><a href="calculadora.html"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6.5h8v3H8zM8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg><span><strong>Calculadora de notas</strong><span>Cuánto te falta para pasar</span></span></a></li>
+            <li><a href="horas-libres.html#ranking"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 21h8M9.5 17h5"/></svg><span><strong>Ranking de HL</strong><span>Top 5 de horas libres</span></span></a></li>
+            <li><a href="ayuda.html"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg><span><strong>Ayuda</strong><span>Preguntas frecuentes y PQRS</span></span></a></li>
+          </ul>
+        </section>
+      </div>
+
+      <div>
+        <aside class="bloque" aria-labelledby="t-proximos">
+          <h2 id="t-proximos">Próximos eventos</h2>
+          <ul class="lista-eventos" id="proximos-eventos"></ul>
+          <a href="eventos.html">Ver calendario completo</a>
+        </aside>
+        <aside class="bloque" aria-labelledby="t-top">
+          <h2 id="t-top">Top 5 en horas libres</h2>
+          <ol class="ranking" id="ranking-inicio"></ol>
+          <a href="horas-libres.html#ranking">Ver ranking</a>
+        </aside>
+      </div>
+    </div>
+
+    <section class="bloque" aria-labelledby="t-video">
+      <h2 id="t-video">Bienvenida a la UNAB</h2>
+      <p>Video institucional de inducción de la Universidad Autónoma de Bucaramanga.</p>
+      <div class="video">
+        <iframe src="https://player.vimeo.com/video/701399240?h=b7b65bd258" title="Video de bienvenida UNAB" loading="lazy"
+          allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__contenido">
+      <div>
+        <p class="footer__marca"><img src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="25" height="40"><strong>CampusLibre UNAB</strong></p>
+        <p>CampusLibre reúne en un solo lugar tus horas libres, los lugares del campus donde puedes obtenerlas y tus servicios académicos.</p>
+      </div>
+      <div>
+        <h2>Bienestar Universitario</h2>
+        <ul>
+          <li>Primer piso del Centro de Servicios Universitarios (CSU)</li>
+          <li>PBX (607) 643 6111, extensión 107</li>
+          <li><a href="mailto:bienestar@unab.edu.co">bienestar@unab.edu.co</a></li>
+          <li><a href="https://bienestar.unab.edu.co/" target="_blank" rel="noopener">bienestar.unab.edu.co</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Accesos</h2>
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares del campus</a></li>
+          <li><a href="eventos.html">Calendario de eventos</a></li>
+          <li><a href="calculadora.html">Calculadora de notas</a></li>
+          <li><a href="ayuda.html">Preguntas frecuentes y PQRS</a></li>
+          <li><a href="https://miportalu.unab.edu.co/" target="_blank" rel="noopener">MiPortalU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <p>Universidad Autónoma de Bucaramanga – UNAB · Avenida 42 No. 48-11, Bucaramanga, Colombia · Línea gratuita 01 8000 931 170.<br>
+      Proyecto académico del curso Diseño de Interfaces de Usuario, 2026. No es un sitio oficial de la universidad.</p>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

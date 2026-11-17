@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Notas de dos semestres, cursos y horario del estudiante.">
+  <title>Académico · CampusLibre UNAB</title>
+  <link rel="icon" href="img/logo-unab-vertical.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="academico">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra superior: accesibilidad y cuenta -->
+  <div class="barra-superior">
+    <div class="barra-superior__contenido">
+      <p>Universidad Autónoma de Bucaramanga · Bienestar Universitario</p>
+      <div class="herramientas" role="group" aria-label="Accesibilidad y cuenta">
+        <button type="button" id="letra-menos" aria-label="Reducir tamaño de letra">A−</button>
+        <button type="button" id="letra-mas" aria-label="Aumentar tamaño de letra">A+</button>
+        <button type="button" id="boton-tema" aria-pressed="false">Modo oscuro</button>
+        <span class="separador" aria-hidden="true"></span>
+        <a href="perfil.html"><span class="solo-escritorio">Hola, </span><span data-nombre-usuario>estudiante</span></a>
+        <button type="button" id="boton-salir">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+  <!-- Header con la navegación global -->
+  <header class="header">
+    <div class="header__contenido">
+      <a class="marca" href="inicio.html">
+        <img class="logo-claro" src="img/logo-unab-vertical.png" alt="UNAB" width="28" height="44">
+        <img class="logo-oscuro" src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="28" height="44">
+        <span class="marca__nombre">CampusLibre</span>
+      </a>
+      <button class="menu-boton" type="button" aria-expanded="false" aria-controls="nav-global">Menú</button>
+      <nav class="nav-global" id="nav-global" aria-label="Navegación principal">
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares</a></li>
+          <li><a href="mis-lugares.html">Mis lugares</a></li>
+          <li><a href="eventos.html">Eventos</a></li>
+          <li><a href="academico.html">Académico</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="ayuda.html">Ayuda</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="principal" id="contenido">
+
+    <section class="encabezado-pagina">
+      <h1>Académico</h1>
+      <p>Tus notas de los dos semestres, cursos y horario, con sugerencias para aprovechar las horas sin clase.</p>
+    </section>
+
+    <div class="con-nav-local">
+      <nav class="nav-local" aria-label="En esta página">
+        <h2>En esta página</h2>
+        <ul>
+          <li><a href="#notas">Notas</a></li>
+          <li><a href="#cursos">Cursos</a></li>
+          <li><a href="#horario">Horario</a></li>
+          <li><a href="#sugerencias">Horas libres sugeridas</a></li>
+        </ul>
+      </nav>
+      <div>
+        <section class="bloque" id="notas" aria-labelledby="t-notas">
+          <h2 id="t-notas">Notas de los dos semestres</h2>
+          <div class="pestanas" role="tablist" aria-label="Semestre" id="pestanas-semestre"></div>
+          <div class="tabla-contenedor">
+            <table id="tabla-notas">
+              <caption class="solo-lector">Notas por corte</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Materia</th><th scope="col" class="numero">Créditos</th>
+                  <th scope="col" class="numero">Corte 1 (30%)</th><th scope="col" class="numero">Corte 2 (30%)</th>
+                  <th scope="col" class="numero">Corte 3 (40%)</th><th scope="col" class="numero">Nota</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="resumen-notas">
+            <div class="cifra"><strong id="promedio-semestre">0.00</strong><span id="texto-promedio">Promedio del semestre</span></div>
+            <div class="cifra"><strong id="creditos-semestre">0</strong><span>Créditos del semestre</span></div>
+            <div class="cifra"><strong id="promedio-acumulado">0.00</strong><span>Promedio acumulado</span></div>
+          </div>
+          <p class="ayuda" style="margin-top:1rem">Los promedios se ponderan por créditos. En el semestre actual solo cuentan los cortes ya calificados. La nota mínima aprobatoria es 3.0.
+          ¿Quieres saber cuánto te falta? Usa la <a href="calculadora.html">calculadora de notas</a>.</p>
+        </section>
+
+        <section class="bloque" id="cursos" aria-labelledby="t-cursos">
+          <h2 id="t-cursos">Cursos inscritos</h2>
+          <p><strong id="total-creditos">0</strong> créditos este semestre.</p>
+          <ul id="lista-cursos" style="padding-left:1.1rem;display:grid;gap:.6rem"></ul>
+        </section>
+
+        <section class="bloque" id="horario" aria-labelledby="t-horario">
+          <h2 id="t-horario">Horario semanal</h2>
+          <div class="tabla-contenedor">
+            <table class="horario" id="tabla-horario"><caption class="solo-lector">Clases y actividades sugeridas por día y hora</caption></table>
+          </div>
+          <div class="leyenda"><span class="l-clase">Clase</span><span class="l-sugerida">Actividad de horas libres sugerida</span></div>
+        </section>
+
+        <section class="bloque" id="sugerencias" aria-labelledby="t-sugerencias">
+          <h2 id="t-sugerencias">Horas libres sugeridas</h2>
+          <p>Estas actividades caen en horas en las que no tienes clase:</p>
+          <ul id="lista-sugerencias" style="padding-left:1.1rem;display:grid;gap:.5rem"></ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__contenido">
+      <div>
+        <p class="footer__marca"><img src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="25" height="40"><strong>CampusLibre UNAB</strong></p>
+        <p>CampusLibre reúne en un solo lugar tus horas libres, los lugares del campus donde puedes obtenerlas y tus servicios académicos.</p>
+      </div>
+      <div>
+        <h2>Bienestar Universitario</h2>
+        <ul>
+          <li>Primer piso del Centro de Servicios Universitarios (CSU)</li>
+          <li>PBX (607) 643 6111, extensión 107</li>
+          <li><a href="mailto:bienestar@unab.edu.co">bienestar@unab.edu.co</a></li>
+          <li><a href="https://bienestar.unab.edu.co/" target="_blank" rel="noopener">bienestar.unab.edu.co</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Accesos</h2>
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares del campus</a></li>
+          <li><a href="eventos.html">Calendario de eventos</a></li>
+          <li><a href="calculadora.html">Calculadora de notas</a></li>
+          <li><a href="ayuda.html">Preguntas frecuentes y PQRS</a></li>
+          <li><a href="https://miportalu.unab.edu.co/" target="_blank" rel="noopener">MiPortalU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <p>Universidad Autónoma de Bucaramanga – UNAB · Avenida 42 No. 48-11, Bucaramanga, Colombia · Línea gratuita 01 8000 931 170.<br>
+      Proyecto académico del curso Diseño de Interfaces de Usuario, 2026. No es un sitio oficial de la universidad.</p>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

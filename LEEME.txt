@@ -1,0 +1,43 @@
+CampusLibre UNAB · Proyecto Diseño de Interfaces de Usuario
+===========================================================
+Integrantes: María Camila Pinzón Ardila, María Paula Gómez, Juan Esteban Becerra
+
+CÓMO ABRIRLO
+Abre index.html con doble clic (Chrome, Edge o Firefox).
+Cuenta de ejemplo:  usuario paula  ·  contraseña Unab2026*
+(También sirve escribir el correo completo: paula@unab.edu.co)
+Puedes crear tu propia cuenta en "Crear cuenta" (solo correos @unab.edu.co).
+
+PÁGINAS (11)
+  index.html          Inicio de sesión (diseño base del equipo MiPortalU, foto Plazoleta Banú)
+  registro.html       Crear usuario con validaciones en vivo
+  inicio.html         Avance de HL, alertas, accesos rápidos, próximos eventos, Top 5 y video
+  perfil.html         Perfil del estudiante y actualización de datos
+  horas-libres.html   Avance, categorías, historial ordenable e imprimible, ranking y simulador
+                      CRUD: registrar asistencia (queda pendiente), validar y eliminar
+  lugares.html        ¿Dónde obtengo HL?, galería, buscador y filtros, inscripción,
+                      plano interactivo por sedes y Google Maps
+                      CRUD: crear, editar y eliminar actividades propias
+  mis-lugares.html    Lugares registrados (cancelar inscripción)
+  academico.html      Notas de dos semestres (pestañas), cursos, horario y HL sugeridas
+  calculadora.html    Calculadora ponderada (materias de los dos semestres), resumen de
+                      semestres, nota necesaria por materia y meta de promedio
+  eventos.html        Calendario mensual con filtros por categoría
+  ayuda.html          Preguntas frecuentes (acordeón) y PQRS con radicado
+
+CARPETAS
+  css/estilos.css     Estilos: color vino de la marca UNAB, modo oscuro y diseño responsive
+  js/datos.js         Datos: lugares, horarios, eventos, semestres, ranking, usuaria de ejemplo
+  js/app.js           Validaciones, cálculos, CRUD, modo oscuro y tamaño de letra (90%–130%)
+  img/                Logos UNAB, escudo MiPortalU y fotos del campus
+
+DATOS
+  Reales: requisito de 96 HL (Resolución 300 de 2006), oficina de Bienestar en el CSU,
+  horarios de atención de Banú, gimnasio, CSU y biblioteca, dirección y teléfonos.
+  De ejemplo: sesiones de HL, cupos, eventos, materias, notas y ranking (en js/datos.js).
+
+  Los datos se guardan en el navegador (localStorage). Para empezar de cero:
+  F12 > Application > Local Storage > borrar.
+
+FUENTES
+  Poppins (títulos) y Open Sans (texto), desde Google Fonts.

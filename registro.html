@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Crea tu usuario en MiPortalU · CampusLibre.">
+  <title>Crear cuenta · CampusLibre UNAB</title>
+  <link rel="icon" href="img/logo-unab-vertical.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="registro">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra superior: accesibilidad y cuenta -->
+  <div class="barra-superior">
+    <div class="barra-superior__contenido">
+      <p>Universidad Autónoma de Bucaramanga · Bienestar Universitario</p>
+      <div class="herramientas" role="group" aria-label="Accesibilidad y cuenta">
+        <button type="button" id="letra-menos" aria-label="Reducir tamaño de letra">A−</button>
+        <button type="button" id="letra-mas" aria-label="Aumentar tamaño de letra">A+</button>
+        <button type="button" id="boton-tema" aria-pressed="false">Modo oscuro</button>
+      </div>
+    </div>
+  </div>
+  <!-- Header de acceso: diseño base del equipo (MiPortalU) con el color vino de la marca UNAB -->
+  <header class="header-acceso">
+    <div class="header-acceso__marca">
+      <img src="img/logo-unab-vertical.png" alt="Logo UNAB" class="header-acceso__logo logo-claro" width="38" height="60">
+      <img src="img/logo-unab-vertical-blanco.png" alt="Logo UNAB" class="header-acceso__logo logo-oscuro" width="38" height="60">
+      <div class="header-acceso__titulos">
+        <span class="header-acceso__nombre">Universidad Autónoma de Bucaramanga</span>
+        <span class="header-acceso__lema">UNAB a la medida de tus sueños</span>
+      </div>
+    </div>
+    <span class="insignia-portal"><img src="img/escudo.png" alt="" width="18" height="18"><span>MiPortalU</span></span>
+  </header>
+
+  <main class="acceso-mp" id="contenido">
+    <section class="hero-acceso" aria-labelledby="titulo-hero">
+      <div class="hero-acceso__capa">
+        <span class="hero-acceso__insignia">Estudiantes UNAB</span>
+        <div>
+          <h2 id="titulo-hero">Crea tu cuenta en dos minutos.</h2>
+          <p>Con tu cuenta podrás inscribirte en los lugares del campus, seguir tu avance de horas libres y calcular tus notas.</p>
+          <p class="hero-acceso__pie">¿Ya tienes cuenta? <a href="index.html">Inicia sesión</a></p>
+        </div>
+      </div>
+      <p class="hero-acceso__credito">Plazoleta Banú · Campus El Jardín</p>
+    </section>
+
+    <section class="login-mp" aria-labelledby="titulo-registro">
+      <div class="login-mp__tarjeta">
+        <span class="login-mp__subtitulo">CAMPUS VIRTUAL · CampusLibre</span>
+        <h1 id="titulo-registro">Crear cuenta</h1>
+        <p class="login-mp__instruccion">Usa tus datos de estudiante. Todos los campos son obligatorios.</p>
+        <form id="form-registro" novalidate>
+          <div class="campo"><label for="nombre">Nombre completo</label><input type="text" id="nombre" autocomplete="name"></div>
+          <div class="campo">
+            <label for="codigo">Código estudiantil</label>
+            <input type="text" id="codigo" placeholder="U00123456" maxlength="9">
+            <p class="ayuda">Lo encuentras en tu carné.</p>
+          </div>
+          <div class="fila-campos">
+            <div class="campo"><label for="programa">Programa</label><select id="programa"><option value="">Elige uno</option><option>Derecho</option><option>Administración de Empresas</option><option>Comunicación Social</option><option>Contaduría Pública</option><option>Enfermería</option><option>Ingeniería Biomédica</option><option>Ingeniería de Sistemas</option><option>Ingeniería Financiera</option><option>Ingeniería Industrial</option><option>Ingeniería Mecatrónica</option><option>Medicina</option><option>Música</option><option>Psicología</option></select></div>
+            <div class="campo"><label for="semestre">Semestre</label><select id="semestre"><option value="">Elige uno</option><option value="1">1.º semestre</option><option value="2">2.º semestre</option><option value="3">3.º semestre</option><option value="4">4.º semestre</option><option value="5">5.º semestre</option><option value="6">6.º semestre</option><option value="7">7.º semestre</option><option value="8">8.º semestre</option><option value="9">9.º semestre</option><option value="10">10.º semestre</option></select></div>
+          </div>
+          <div class="campo">
+            <label for="correo">Correo institucional</label>
+            <input type="email" id="correo" autocomplete="email" placeholder="nombre@unab.edu.co">
+            <p class="ayuda">Solo se aceptan correos que terminan en @unab.edu.co.</p>
+          </div>
+          <div class="campo">
+            <label for="clave">Contraseña</label>
+            <div class="clave-contenedor">
+              <input type="password" id="clave" autocomplete="new-password" aria-describedby="requisitos-clave">
+              <button type="button" class="ver-clave" aria-pressed="false">Mostrar</button>
+            </div>
+            <ul class="ayuda" id="requisitos-clave" style="list-style:none;padding:0">
+              <li id="req-largo" data-texto="Mínimo 8 caracteres">○ Mínimo 8 caracteres</li>
+              <li id="req-mayuscula" data-texto="Una letra mayúscula">○ Una letra mayúscula</li>
+              <li id="req-numero" data-texto="Un número">○ Un número</li>
+              <li id="req-simbolo" data-texto="Un símbolo, por ejemplo * o #">○ Un símbolo, por ejemplo * o #</li>
+            </ul>
+          </div>
+          <div class="campo">
+            <label for="confirmar">Confirma la contraseña</label>
+            <div class="clave-contenedor">
+              <input type="password" id="confirmar" autocomplete="new-password">
+              <button type="button" class="ver-clave" aria-pressed="false">Mostrar</button>
+            </div>
+          </div>
+          <div class="campo campo--check">
+            <input type="checkbox" id="acepto">
+            <label for="acepto">Autorizo el tratamiento de mis datos personales según la política de la UNAB.</label>
+          </div>
+          <button type="submit" class="boton boton--ancho">Crear cuenta</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__contenido">
+      <div>
+        <p class="footer__marca"><img src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="25" height="40"><strong>CampusLibre UNAB</strong></p>
+        <p>CampusLibre reúne en un solo lugar tus horas libres, los lugares del campus donde puedes obtenerlas y tus servicios académicos.</p>
+      </div>
+      <div>
+        <h2>Bienestar Universitario</h2>
+        <ul>
+          <li>Primer piso del Centro de Servicios Universitarios (CSU)</li>
+          <li>PBX (607) 643 6111, extensión 107</li>
+          <li><a href="mailto:bienestar@unab.edu.co">bienestar@unab.edu.co</a></li>
+          <li><a href="https://bienestar.unab.edu.co/" target="_blank" rel="noopener">bienestar.unab.edu.co</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Accesos</h2>
+        <ul>
+          <li><a href="index.html">Iniciar sesión</a></li>
+          <li><a href="registro.html">Crear cuenta</a></li>
+          <li><a href="https://miportalu.unab.edu.co/" target="_blank" rel="noopener">MiPortalU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <p>Universidad Autónoma de Bucaramanga – UNAB · Avenida 42 No. 48-11, Bucaramanga, Colombia · Línea gratuita 01 8000 931 170.<br>
+      Proyecto académico del curso Diseño de Interfaces de Usuario, 2026. No es un sitio oficial de la universidad.</p>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

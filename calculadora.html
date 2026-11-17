@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calcula cuánto necesitas para pasar una materia o tener un buen promedio.">
+  <title>Calculadora de notas · CampusLibre UNAB</title>
+  <link rel="icon" href="img/logo-unab-vertical.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="calculadora">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra superior: accesibilidad y cuenta -->
+  <div class="barra-superior">
+    <div class="barra-superior__contenido">
+      <p>Universidad Autónoma de Bucaramanga · Bienestar Universitario</p>
+      <div class="herramientas" role="group" aria-label="Accesibilidad y cuenta">
+        <button type="button" id="letra-menos" aria-label="Reducir tamaño de letra">A−</button>
+        <button type="button" id="letra-mas" aria-label="Aumentar tamaño de letra">A+</button>
+        <button type="button" id="boton-tema" aria-pressed="false">Modo oscuro</button>
+        <span class="separador" aria-hidden="true"></span>
+        <a href="perfil.html"><span class="solo-escritorio">Hola, </span><span data-nombre-usuario>estudiante</span></a>
+        <button type="button" id="boton-salir">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+  <!-- Header con la navegación global -->
+  <header class="header">
+    <div class="header__contenido">
+      <a class="marca" href="inicio.html">
+        <img class="logo-claro" src="img/logo-unab-vertical.png" alt="UNAB" width="28" height="44">
+        <img class="logo-oscuro" src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="28" height="44">
+        <span class="marca__nombre">CampusLibre</span>
+      </a>
+      <button class="menu-boton" type="button" aria-expanded="false" aria-controls="nav-global">Menú</button>
+      <nav class="nav-global" id="nav-global" aria-label="Navegación principal">
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares</a></li>
+          <li><a href="mis-lugares.html">Mis lugares</a></li>
+          <li><a href="eventos.html">Eventos</a></li>
+          <li><a href="academico.html">Académico</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="ayuda.html">Ayuda</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="principal" id="contenido">
+
+    <section class="encabezado-pagina">
+      <h1>Calculadora de notas</h1>
+      <p>Descubre cuánto necesitas para pasar una materia o para llegar al promedio que quieres. Incluye las materias de tus dos semestres.</p>
+    </section>
+
+    <div class="con-nav-local">
+      <nav class="nav-local" aria-label="En esta página">
+        <h2>En esta página</h2>
+        <ul>
+          <li><a href="#materia">Calculadora ponderada</a></li>
+          <li><a href="#semestres">Mis dos semestres</a></li>
+          <li><a href="#resumen">Materias del semestre</a></li>
+          <li><a href="#promedio">Meta de promedio</a></li>
+        </ul>
+      </nav>
+      <div>
+        <section class="bloque" id="materia" aria-labelledby="t-materia">
+          <h2 id="t-materia">Calculadora ponderada por materia</h2>
+          <p>Cada evaluación tiene su porcentaje. Cambia nombres y porcentajes si tu profesor evalúa distinto, agrega o quita evaluaciones y deja en blanco las notas que aún no tienes.</p>
+          <form id="form-calculadora" novalidate>
+            <div class="campo"><label for="calc-materia">Materia</label><select id="calc-materia"></select></div>
+            <fieldset class="evaluaciones">
+              <legend>Evaluaciones de la materia</legend>
+              <div class="evaluaciones__cabecera" aria-hidden="true"><span>Evaluación</span><span>Porcentaje</span><span>Nota (0.0 – 5.0)</span><span></span></div>
+              <div id="lista-evaluaciones"></div>
+              <div class="evaluaciones__pie">
+                <button type="button" class="boton boton--secundario boton--pequeno" id="agregar-evaluacion">Agregar evaluación</button>
+                <p id="total-porcentaje" class="total-porcentaje" aria-live="polite">Total: 100%</p>
+              </div>
+            </fieldset>
+            <div class="campo" style="max-width:260px">
+              <label for="calc-meta">Nota que quiero sacar</label>
+              <input type="number" id="calc-meta" min="3" max="5" step="0.1" value="3.0">
+              <p class="ayuda">3.0 es la nota mínima para pasar.</p>
+            </div>
+            <button type="submit" class="boton">Calcular</button>
+          </form>
+          <div class="aviso" id="calc-resultado" aria-live="polite" hidden style="margin-top:1rem"></div>
+        </section>
+
+        <section class="bloque" id="semestres" aria-labelledby="t-semestres">
+          <h2 id="t-semestres">Mis dos semestres</h2>
+          <div class="tabla-contenedor">
+            <table id="tabla-semestres">
+              <caption class="solo-lector">Créditos y promedio de cada semestre</caption>
+              <thead><tr><th scope="col">Semestre</th><th scope="col" class="numero">Créditos</th><th scope="col" class="numero">Promedio</th><th scope="col">Estado</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="bloque" id="resumen" aria-labelledby="t-resumen">
+          <h2 id="t-resumen">Materias del semestre actual</h2>
+          <p>Nota que necesitas en el corte 3 (40%) según lo que llevas.</p>
+          <div class="tabla-contenedor">
+            <table id="tabla-necesito">
+              <caption class="solo-lector">Nota necesaria en el corte 3 por materia</caption>
+              <thead><tr><th scope="col">Materia</th><th scope="col" class="numero">Llevas</th><th scope="col" class="numero">Para pasar (3.0)</th><th scope="col" class="numero">Para 4.0</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="bloque" id="promedio" aria-labelledby="t-promedio">
+          <h2 id="t-promedio">Meta de promedio del semestre</h2>
+          <p>Tu promedio parcial del semestre es <strong id="prom-actual">0.00</strong>. Escribe el promedio que quieres y te decimos cuánto necesitas en el último corte.</p>
+          <form id="form-promedio" novalidate style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+            <div class="campo" style="max-width:240px"><label for="prom-meta">Promedio que quiero</label><input type="number" id="prom-meta" min="3" max="5" step="0.1" value="4.0"></div>
+            <button type="submit" class="boton" style="margin-top:1.9rem">Calcular</button>
+          </form>
+          <div class="aviso" id="prom-resultado" aria-live="polite" hidden></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__contenido">
+      <div>
+        <p class="footer__marca"><img src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="25" height="40"><strong>CampusLibre UNAB</strong></p>
+        <p>CampusLibre reúne en un solo lugar tus horas libres, los lugares del campus donde puedes obtenerlas y tus servicios académicos.</p>
+      </div>
+      <div>
+        <h2>Bienestar Universitario</h2>
+        <ul>
+          <li>Primer piso del Centro de Servicios Universitarios (CSU)</li>
+          <li>PBX (607) 643 6111, extensión 107</li>
+          <li><a href="mailto:bienestar@unab.edu.co">bienestar@unab.edu.co</a></li>
+          <li><a href="https://bienestar.unab.edu.co/" target="_blank" rel="noopener">bienestar.unab.edu.co</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Accesos</h2>
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares del campus</a></li>
+          <li><a href="eventos.html">Calendario de eventos</a></li>
+          <li><a href="calculadora.html">Calculadora de notas</a></li>
+          <li><a href="ayuda.html">Preguntas frecuentes y PQRS</a></li>
+          <li><a href="https://miportalu.unab.edu.co/" target="_blank" rel="noopener">MiPortalU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <p>Universidad Autónoma de Bucaramanga – UNAB · Avenida 42 No. 48-11, Bucaramanga, Colombia · Línea gratuita 01 8000 931 170.<br>
+      Proyecto académico del curso Diseño de Interfaces de Usuario, 2026. No es un sitio oficial de la universidad.</p>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

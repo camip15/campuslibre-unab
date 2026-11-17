@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Consulta, registra y valida tus horas libres.">
+  <title>Mis horas libres · CampusLibre UNAB</title>
+  <link rel="icon" href="img/logo-unab-vertical.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="horas">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra superior: accesibilidad y cuenta -->
+  <div class="barra-superior">
+    <div class="barra-superior__contenido">
+      <p>Universidad Autónoma de Bucaramanga · Bienestar Universitario</p>
+      <div class="herramientas" role="group" aria-label="Accesibilidad y cuenta">
+        <button type="button" id="letra-menos" aria-label="Reducir tamaño de letra">A−</button>
+        <button type="button" id="letra-mas" aria-label="Aumentar tamaño de letra">A+</button>
+        <button type="button" id="boton-tema" aria-pressed="false">Modo oscuro</button>
+        <span class="separador" aria-hidden="true"></span>
+        <a href="perfil.html"><span class="solo-escritorio">Hola, </span><span data-nombre-usuario>estudiante</span></a>
+        <button type="button" id="boton-salir">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+  <!-- Header con la navegación global -->
+  <header class="header">
+    <div class="header__contenido">
+      <a class="marca" href="inicio.html">
+        <img class="logo-claro" src="img/logo-unab-vertical.png" alt="UNAB" width="28" height="44">
+        <img class="logo-oscuro" src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="28" height="44">
+        <span class="marca__nombre">CampusLibre</span>
+      </a>
+      <button class="menu-boton" type="button" aria-expanded="false" aria-controls="nav-global">Menú</button>
+      <nav class="nav-global" id="nav-global" aria-label="Navegación principal">
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares</a></li>
+          <li><a href="mis-lugares.html">Mis lugares</a></li>
+          <li><a href="eventos.html">Eventos</a></li>
+          <li><a href="academico.html">Académico</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="ayuda.html">Ayuda</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="principal" id="contenido">
+
+    <section class="encabezado-pagina">
+      <h1>Mis horas libres</h1>
+      <p>La UNAB pide 96 horas de actividades libres (deportivas, culturales, artísticas, sociales y de salud integral) para graduarte de pregrado.</p>
+    </section>
+
+    <div class="con-nav-local">
+      <nav class="nav-local" aria-label="En esta página">
+        <h2>En esta página</h2>
+        <ul>
+          <li><a href="#avance">Mi avance</a></li>
+          <li><a href="#categorias">Por categoría</a></li>
+          <li><a href="#historial">Historial</a></li>
+          <li><a href="#ranking">Ranking Top 5</a></li>
+          <li><a href="#simulador">Simulador</a></li>
+        </ul>
+      </nav>
+      <div>
+        <section class="bloque" id="avance" aria-labelledby="t-avance">
+          <h2 id="t-avance">Mi avance</h2>
+          <div class="medidor__cifras">
+            <div class="cifra"><strong id="hl-cumplidas">0</strong><span>horas cumplidas</span></div>
+            <div class="cifra cifra--faltan"><strong id="hl-faltan">96</strong><span>horas te faltan</span></div>
+            <div class="cifra"><strong id="hl-porcentaje">0%</strong><span>del requisito</span></div>
+            <div class="cifra"><strong id="hl-pendientes">0</strong><span>pendientes de validar</span></div>
+          </div>
+          <div class="cuadricula-hl" id="cuadricula-hl"></div>
+          <p class="medidor__leyenda">Cada cuadro es una hora libre. Los de color vino ya están validados; los punteados esperan la validación de Bienestar.</p>
+        </section>
+
+        <section class="bloque" id="categorias" aria-labelledby="t-categorias">
+          <h2 id="t-categorias">Horas validadas por categoría</h2>
+          <ul class="barras" id="por-categoria"></ul>
+        </section>
+
+        <section class="bloque" id="historial" aria-labelledby="t-historial">
+          <div class="bloque__cabecera">
+            <h2 id="t-historial">Historial de asistencias</h2>
+            <div class="grupo-botones no-imprimir">
+              <button type="button" class="boton boton--pequeno" id="abrir-asistencia" aria-controls="panel-asistencia">Registrar asistencia</button>
+              <button type="button" class="boton boton--secundario boton--pequeno" id="boton-imprimir">Imprimir historial</button>
+            </div>
+          </div>
+
+          <div class="panel-crud no-imprimir" id="panel-asistencia" hidden>
+            <h3>Registrar una asistencia</h3>
+            <p class="ayuda" style="margin-bottom:1rem">Queda <strong>pendiente</strong> hasta que Bienestar la valide. Las pendientes se pueden validar o eliminar desde la tabla.</p>
+            <form id="form-asistencia" novalidate>
+              <div class="fila-campos">
+                <div class="campo"><label for="as-fecha">Fecha</label><input type="date" id="as-fecha" min="2026-01-01"></div>
+                <div class="campo"><label for="as-lugar">Lugar</label><select id="as-lugar"></select></div>
+              </div>
+              <div class="campo"><label for="as-actividad">Actividad</label><input type="text" id="as-actividad" maxlength="60" placeholder="Ej.: Taller de fotografía"></div>
+              <div class="fila-campos">
+                <div class="campo"><label for="as-categoria">Categoría</label><select id="as-categoria"><option value="">Elige una</option><option value="deporte">Deporte</option><option value="cultura">Cultura</option><option value="salud">Salud integral</option><option value="social">Social</option></select></div>
+                <div class="campo"><label for="as-horas">Horas</label><input type="number" id="as-horas" min="1" max="8" value="2"></div>
+              </div>
+              <div class="grupo-botones">
+                <button type="submit" class="boton">Guardar asistencia</button>
+                <button type="button" class="boton boton--secundario" id="cancelar-asistencia">Cancelar</button>
+              </div>
+            </form>
+          </div>
+
+          <p class="ayuda" style="margin:1rem 0">Haz clic en el título de una columna para ordenar.</p>
+          <div class="tabla-contenedor">
+            <table id="tabla-historial">
+              <caption class="solo-lector">Actividades a las que asististe</caption>
+              <thead>
+                <tr>
+                  <th scope="col"><button type="button" data-campo="fecha" data-orden="desc">Fecha</button></th>
+                  <th scope="col"><button type="button" data-campo="actividad">Actividad</button></th>
+                  <th scope="col"><button type="button" data-campo="lugar">Lugar</button></th>
+                  <th scope="col"><button type="button" data-campo="categoria">Categoría</button></th>
+                  <th scope="col" class="numero"><button type="button" data-campo="horas">Horas</button></th>
+                  <th scope="col"><button type="button" data-campo="estado">Estado</button></th>
+                  <th scope="col" class="no-imprimir">Acciones</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="ayuda" style="margin-top:1rem">Los certificados de congresos y seminarios también se pueden validar como horas libres ante Bienestar.</p>
+        </section>
+
+        <section class="bloque no-imprimir" id="ranking" aria-labelledby="t-ranking">
+          <h2 id="t-ranking">Ranking Top 5 de horas libres</h2>
+          <p>Los cinco estudiantes con más horas libres validadas. Vas en el puesto <strong id="mi-puesto">—</strong> con <strong id="mis-horas-ranking">0</strong> horas.</p>
+          <ol class="ranking" id="lista-ranking"></ol>
+        </section>
+
+        <section class="bloque no-imprimir" id="simulador" aria-labelledby="t-simulador">
+          <h2 id="t-simulador">¿Cuándo termino?</h2>
+          <p>Escribe cuántas horas por semana puedes dedicar y calculamos cuándo completarías las 96.</p>
+          <form id="form-simulador" novalidate style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+            <div class="campo" style="max-width:220px"><label for="horas-semana">Horas por semana</label><input type="number" id="horas-semana" min="1" max="20" value="3"></div>
+            <button type="submit" class="boton" style="margin-top:1.9rem">Calcular</button>
+          </form>
+          <div class="aviso aviso--exito" id="resultado-simulador" aria-live="polite" hidden></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__contenido">
+      <div>
+        <p class="footer__marca"><img src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="25" height="40"><strong>CampusLibre UNAB</strong></p>
+        <p>CampusLibre reúne en un solo lugar tus horas libres, los lugares del campus donde puedes obtenerlas y tus servicios académicos.</p>
+      </div>
+      <div>
+        <h2>Bienestar Universitario</h2>
+        <ul>
+          <li>Primer piso del Centro de Servicios Universitarios (CSU)</li>
+          <li>PBX (607) 643 6111, extensión 107</li>
+          <li><a href="mailto:bienestar@unab.edu.co">bienestar@unab.edu.co</a></li>
+          <li><a href="https://bienestar.unab.edu.co/" target="_blank" rel="noopener">bienestar.unab.edu.co</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Accesos</h2>
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares del campus</a></li>
+          <li><a href="eventos.html">Calendario de eventos</a></li>
+          <li><a href="calculadora.html">Calculadora de notas</a></li>
+          <li><a href="ayuda.html">Preguntas frecuentes y PQRS</a></li>
+          <li><a href="https://miportalu.unab.edu.co/" target="_blank" rel="noopener">MiPortalU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <p>Universidad Autónoma de Bucaramanga – UNAB · Avenida 42 No. 48-11, Bucaramanga, Colombia · Línea gratuita 01 8000 931 170.<br>
+      Proyecto académico del curso Diseño de Interfaces de Usuario, 2026. No es un sitio oficial de la universidad.</p>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

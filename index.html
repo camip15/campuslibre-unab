@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inicia sesión en MiPortalU · CampusLibre para consultar tus horas libres, notas y servicios.">
+  <title>Iniciar sesión · CampusLibre UNAB</title>
+  <link rel="icon" href="img/logo-unab-vertical.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="login">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra superior: accesibilidad y cuenta -->
+  <div class="barra-superior">
+    <div class="barra-superior__contenido">
+      <p>Universidad Autónoma de Bucaramanga · Bienestar Universitario</p>
+      <div class="herramientas" role="group" aria-label="Accesibilidad y cuenta">
+        <button type="button" id="letra-menos" aria-label="Reducir tamaño de letra">A−</button>
+        <button type="button" id="letra-mas" aria-label="Aumentar tamaño de letra">A+</button>
+        <button type="button" id="boton-tema" aria-pressed="false">Modo oscuro</button>
+      </div>
+    </div>
+  </div>
+  <!-- Header de acceso: diseño base del equipo (MiPortalU) con el color vino de la marca UNAB -->
+  <header class="header-acceso">
+    <div class="header-acceso__marca">
+      <img src="img/logo-unab-vertical.png" alt="Logo UNAB" class="header-acceso__logo logo-claro" width="38" height="60">
+      <img src="img/logo-unab-vertical-blanco.png" alt="Logo UNAB" class="header-acceso__logo logo-oscuro" width="38" height="60">
+      <div class="header-acceso__titulos">
+        <span class="header-acceso__nombre">Universidad Autónoma de Bucaramanga</span>
+        <span class="header-acceso__lema">UNAB a la medida de tus sueños</span>
+      </div>
+    </div>
+    <span class="insignia-portal"><img src="img/escudo.png" alt="" width="18" height="18"><span>MiPortalU</span></span>
+  </header>
+
+  <main class="acceso-mp" id="contenido">
+    <section class="hero-acceso" aria-labelledby="titulo-hero">
+      <div class="hero-acceso__capa">
+        <span class="hero-acceso__insignia">¡Descubre tu futuro con nosotros!</span>
+        <div>
+          <h2 id="titulo-hero">Tu próximo capítulo empieza aquí.</h2>
+          <p>Consulta tus horas libres, tus notas y los lugares del campus desde un solo lugar.</p>
+          <p>Pensado para los estudiantes de la UNAB.</p>
+          <p class="hero-acceso__pie">Potenciamos ideas, construimos futuros, ¡ven y vibra con nosotros!</p>
+        </div>
+      </div>
+      <p class="hero-acceso__credito">Plazoleta Banú · Campus El Jardín</p>
+    </section>
+
+    <section class="login-mp" aria-labelledby="titulo-login">
+      <div class="login-mp__tarjeta">
+        <span class="login-mp__subtitulo">CAMPUS VIRTUAL · CampusLibre</span>
+        <h1 id="titulo-login">Te damos la bienvenida</h1>
+        <p class="login-mp__instruccion">Ingresa con tu cuenta institucional para acceder a tu espacio académico.</p>
+
+        <div class="aviso" id="aviso-login" role="alert" hidden></div>
+
+        <form id="form-login" novalidate>
+          <div class="campo">
+            <label for="usuario">Usuario</label>
+            <input type="text" id="usuario" name="usuario" autocomplete="username" placeholder="Tu usuario institucional" aria-describedby="ayuda-usuario">
+            <p class="ayuda" id="ayuda-usuario">Escribe tu usuario o tu correo completo, que debe terminar en @unab.edu.co.</p>
+          </div>
+          <div class="campo">
+            <label for="contrasena">Contraseña</label>
+            <div class="clave-contenedor">
+              <input type="password" id="contrasena" name="contrasena" autocomplete="current-password" placeholder="Ingresa tu contraseña">
+              <button type="button" class="ver-clave" aria-pressed="false">Mostrar</button>
+            </div>
+          </div>
+          <p class="login-mp__olvido"><button type="button" class="enlace" data-ayuda-acceso>¿Olvidaste tu contraseña?</button></p>
+          <button type="submit" class="boton boton--ancho">Iniciar sesión</button>
+        </form>
+
+        <p class="acceso__pie">¿Aún no tienes cuenta? <a href="registro.html">Crear cuenta</a></p>
+        <div class="login-mp__soporte">
+          <p>¿Necesitas ayuda para ingresar? <button type="button" class="enlace" data-ayuda-acceso>Contacta a soporte académico</button></p>
+        </div>
+        <div class="cuenta-prueba">
+          <p><strong>Cuenta de ejemplo</strong><br>Usuario: paula<br>Contraseña: Unab2026*</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__contenido">
+      <div>
+        <p class="footer__marca"><img src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="25" height="40"><strong>CampusLibre UNAB</strong></p>
+        <p>CampusLibre reúne en un solo lugar tus horas libres, los lugares del campus donde puedes obtenerlas y tus servicios académicos.</p>
+      </div>
+      <div>
+        <h2>Bienestar Universitario</h2>
+        <ul>
+          <li>Primer piso del Centro de Servicios Universitarios (CSU)</li>
+          <li>PBX (607) 643 6111, extensión 107</li>
+          <li><a href="mailto:bienestar@unab.edu.co">bienestar@unab.edu.co</a></li>
+          <li><a href="https://bienestar.unab.edu.co/" target="_blank" rel="noopener">bienestar.unab.edu.co</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Accesos</h2>
+        <ul>
+          <li><a href="index.html">Iniciar sesión</a></li>
+          <li><a href="registro.html">Crear cuenta</a></li>
+          <li><a href="https://miportalu.unab.edu.co/" target="_blank" rel="noopener">MiPortalU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <p>Universidad Autónoma de Bucaramanga – UNAB · Avenida 42 No. 48-11, Bucaramanga, Colombia · Línea gratuita 01 8000 931 170.<br>
+      Proyecto académico del curso Diseño de Interfaces de Usuario, 2026. No es un sitio oficial de la universidad.</p>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Preguntas frecuentes y solicitudes a Bienestar Universitario.">
+  <title>Ayuda · CampusLibre UNAB</title>
+  <link rel="icon" href="img/logo-unab-vertical.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="ayuda">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra superior: accesibilidad y cuenta -->
+  <div class="barra-superior">
+    <div class="barra-superior__contenido">
+      <p>Universidad Autónoma de Bucaramanga · Bienestar Universitario</p>
+      <div class="herramientas" role="group" aria-label="Accesibilidad y cuenta">
+        <button type="button" id="letra-menos" aria-label="Reducir tamaño de letra">A−</button>
+        <button type="button" id="letra-mas" aria-label="Aumentar tamaño de letra">A+</button>
+        <button type="button" id="boton-tema" aria-pressed="false">Modo oscuro</button>
+        <span class="separador" aria-hidden="true"></span>
+        <a href="perfil.html"><span class="solo-escritorio">Hola, </span><span data-nombre-usuario>estudiante</span></a>
+        <button type="button" id="boton-salir">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+  <!-- Header con la navegación global -->
+  <header class="header">
+    <div class="header__contenido">
+      <a class="marca" href="inicio.html">
+        <img class="logo-claro" src="img/logo-unab-vertical.png" alt="UNAB" width="28" height="44">
+        <img class="logo-oscuro" src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="28" height="44">
+        <span class="marca__nombre">CampusLibre</span>
+      </a>
+      <button class="menu-boton" type="button" aria-expanded="false" aria-controls="nav-global">Menú</button>
+      <nav class="nav-global" id="nav-global" aria-label="Navegación principal">
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares</a></li>
+          <li><a href="mis-lugares.html">Mis lugares</a></li>
+          <li><a href="eventos.html">Eventos</a></li>
+          <li><a href="academico.html">Académico</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="ayuda.html">Ayuda</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="principal" id="contenido">
+
+    <section class="encabezado-pagina">
+      <h1>Ayuda</h1>
+      <p>Respuestas a las dudas más comunes sobre horas libres y un canal directo con Bienestar Universitario.</p>
+    </section>
+
+    <div class="con-nav-local">
+      <nav class="nav-local" aria-label="En esta página">
+        <h2>En esta página</h2>
+        <ul>
+          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+          <li><a href="#pqrs">Enviar una solicitud</a></li>
+          <li><a href="#solicitudes">Mis solicitudes</a></li>
+        </ul>
+      </nav>
+      <div>
+        <section class="bloque" id="preguntas" aria-labelledby="t-preguntas">
+          <h2 id="t-preguntas">Preguntas frecuentes</h2>
+          <details>
+            <summary>¿Cuántas horas libres necesito para graduarme?</summary>
+            <p>Los estudiantes de pregrado deben completar mínimo 96 horas de actividades libres y eventos sociales, artísticos, culturales, deportivos y de salud integral (Resolución 300 de 2006).</p>
+          </details>
+          <details>
+            <summary>¿Dónde consulto mis horas libres?</summary>
+            <p>En <a href="horas-libres.html">Mis horas libres</a> ves cuántas llevas, cuántas te faltan y el historial de cada actividad.</p>
+          </details>
+          <details>
+            <summary>¿Por qué una asistencia aparece como pendiente?</summary>
+            <p>Las asistencias que registras quedan pendientes hasta que Bienestar Universitario las valida. Solo las validadas suman a tus 96 horas.</p>
+          </details>
+          <details>
+            <summary>¿Puedo validar un congreso o seminario como horas libres?</summary>
+            <p>Sí. Bienestar recibe certificados de congresos y seminarios para validarlos como horas libres. Entrégalos dentro de las fechas que publica cada semestre; si los entregas tarde, quedan para el periodo siguiente.</p>
+          </details>
+          <details>
+            <summary>Asistí a una actividad y no me aparece. ¿Qué hago?</summary>
+            <p>Regístrala desde tu historial o envía una solicitud desde esta página. También puedes acercarte a la oficina de Bienestar, en el primer piso del Centro de Servicios Universitarios (CSU).</p>
+          </details>
+          <details>
+            <summary>¿Puedo inscribirme en varios lugares a la vez?</summary>
+            <p>Sí, siempre que haya cupos y los horarios no se crucen con tus clases. Si ya no puedes asistir, cancela la inscripción en <a href="mis-lugares.html">Mis lugares</a>.</p>
+          </details>
+          <details>
+            <summary>¿Qué pasa si no completo las 96 horas?</summary>
+            <p>Las horas libres son un requisito de grado. Si te faltan, no podrás graduarte hasta completarlas, por eso conviene repartirlas a lo largo de la carrera.</p>
+          </details>
+        </section>
+
+        <section class="bloque" id="pqrs" aria-labelledby="t-pqrs">
+          <h2 id="t-pqrs">Enviar una solicitud (PQRS)</h2>
+          <p>Peticiones, quejas, reclamos o sugerencias para Bienestar Universitario.</p>
+          <form id="form-pqrs" novalidate>
+            <div class="fila-campos">
+              <div class="campo"><label for="tipo">Tipo de solicitud</label><select id="tipo"><option value="">Elige uno</option><option>Petición</option><option>Queja</option><option>Reclamo</option><option>Sugerencia</option></select></div>
+              <div class="campo">
+                <label for="asunto">Asunto</label>
+                <input type="text" id="asunto" maxlength="80" placeholder="Ej.: No me aparecen horas del gimnasio">
+                <p class="ayuda" id="contador-asunto">0 / 80 caracteres</p>
+              </div>
+            </div>
+            <div class="campo">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" rows="5" maxlength="500"></textarea>
+              <p class="ayuda" id="contador-mensaje">0 / 500 caracteres</p>
+            </div>
+            <button type="submit" class="boton">Enviar solicitud</button>
+          </form>
+        </section>
+
+        <section class="bloque" id="solicitudes" aria-labelledby="t-solicitudes">
+          <h2 id="t-solicitudes">Mis solicitudes</h2>
+          <ul id="mis-solicitudes" style="padding-left:1.1rem;display:grid;gap:.6rem"></ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__contenido">
+      <div>
+        <p class="footer__marca"><img src="img/logo-unab-vertical-blanco.png" alt="UNAB" width="25" height="40"><strong>CampusLibre UNAB</strong></p>
+        <p>CampusLibre reúne en un solo lugar tus horas libres, los lugares del campus donde puedes obtenerlas y tus servicios académicos.</p>
+      </div>
+      <div>
+        <h2>Bienestar Universitario</h2>
+        <ul>
+          <li>Primer piso del Centro de Servicios Universitarios (CSU)</li>
+          <li>PBX (607) 643 6111, extensión 107</li>
+          <li><a href="mailto:bienestar@unab.edu.co">bienestar@unab.edu.co</a></li>
+          <li><a href="https://bienestar.unab.edu.co/" target="_blank" rel="noopener">bienestar.unab.edu.co</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Accesos</h2>
+        <ul>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="horas-libres.html">Mis horas libres</a></li>
+          <li><a href="lugares.html">Lugares del campus</a></li>
+          <li><a href="eventos.html">Calendario de eventos</a></li>
+          <li><a href="calculadora.html">Calculadora de notas</a></li>
+          <li><a href="ayuda.html">Preguntas frecuentes y PQRS</a></li>
+          <li><a href="https://miportalu.unab.edu.co/" target="_blank" rel="noopener">MiPortalU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <p>Universidad Autónoma de Bucaramanga – UNAB · Avenida 42 No. 48-11, Bucaramanga, Colombia · Línea gratuita 01 8000 931 170.<br>
+      Proyecto académico del curso Diseño de Interfaces de Usuario, 2026. No es un sitio oficial de la universidad.</p>
+    </div>
+  </footer>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
